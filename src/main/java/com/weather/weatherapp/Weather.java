@@ -1,14 +1,14 @@
 package com.weather.weatherapp;
 
 public class Weather {
-    private int grad;
+    private String grad;
     private String stadt;
 
-    public int getGrad() {
+    public String getGrad() {
         return grad;
     }
 
-    public void setGrad(int grad) {
+    public void setGrad(String grad) {
         this.grad = grad;
     }
 
