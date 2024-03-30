@@ -21,7 +21,7 @@ public class WeatherController {
     }
     @PostMapping("/processForm")
     public String processForm(@ModelAttribute("weather") Weather weather){
-        String url = "https://api.openweathermap.org/data/2.5/weather" + "?q=" + "Ankara" + "&appid=" + "f41eba3e7feef04c672a6da3044f62a0";
+        String url = "https://api.openweathermap.org/data/2.5/weather" + "?q=" + weather.getStadt() + "&appid=" + "f41eba3e7feef04c672a6da3044f62a0";
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(url, String.class);
 
