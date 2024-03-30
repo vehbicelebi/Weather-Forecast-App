@@ -3,8 +3,10 @@ package com.weather.weatherapp.Controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weather.weatherapp.Weather;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +22,8 @@ public class WeatherController {
         return "start-page";
     }
     @PostMapping("/processForm")
-    public String processForm(@ModelAttribute("weather") Weather weather){
+    public String processForm(Weather weather){
+
         String url = "https://api.openweathermap.org/data/2.5/weather" + "?q=" + weather.getStadt() + "&appid=" + "f41eba3e7feef04c672a6da3044f62a0";
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(url, String.class);
@@ -35,8 +38,9 @@ public class WeatherController {
             int temperatureCelsius = (int) (temperatureKelvin - 273.15);
             // Setzen der Temperatur im Weather-Objekt
             weather.setGrad(String.valueOf(temperatureCelsius));
-            // weather.setGrad(result);
 
+            String weatherDescription = root.path("weather").get(0).path("description").asText();
+            weather.setDescription(weatherDescription);
         } catch (Exception e) {
             e.printStackTrace();
             return "start-page"; // Weiterleitung zur Fehlerseite

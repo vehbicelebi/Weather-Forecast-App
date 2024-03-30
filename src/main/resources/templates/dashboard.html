@@ -26,7 +26,8 @@
 <body>
 <div class="centered card" style="width: 15rem;" align="center">
     <span th:object="${weather}" th:text="${weather.stadt}"/>
-    <span th:object="${weather}" th:text="${weather.grad} + '&deg;'"/>
+    <span th:object="${weather}" th:text="${weather.grad} + '&deg;' + C"/>
+    <span th:object="${weather}" th:text="${weather.description}"/>
 </div>
 </body>
 </html>

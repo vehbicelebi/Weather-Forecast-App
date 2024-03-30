@@ -1,8 +1,12 @@
 package com.weather.weatherapp;
 
+import jakarta.validation.constraints.NotNull;
+
 public class Weather {
     private String grad;
+
     private String stadt;
+    private String description;
 
     public String getGrad() {
         return grad;
@@ -18,5 +22,13 @@ public class Weather {
 
     public void setStadt(String stadt) {
         this.stadt = stadt;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
