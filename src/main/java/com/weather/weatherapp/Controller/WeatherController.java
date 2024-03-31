@@ -22,12 +22,7 @@ public class WeatherController {
         return "start-page";
     }
     @PostMapping("/processForm")
-    public String processForm(@Valid @ModelAttribute("weather") Weather weather, BindingResult bindingResult){
-
-        if(bindingResult.hasErrors()){
-            return "start-page";
-        }
-
+    public String processForm(Weather weather){
         String url = "https://api.openweathermap.org/data/2.5/weather" + "?q=" + weather.getStadt() + "&appid=" + "f41eba3e7feef04c672a6da3044f62a0";
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(url, String.class);
