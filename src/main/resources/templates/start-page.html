@@ -2,11 +2,19 @@
 <html xmlns:th="https://www.thymeleaf.org"><head>
     <meta charset="UTF-8">
     <title>Weather Forecast App</title>
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <h1>Weather Forecast App</h1>
 <form th:action="@{/processForm}" method="post" th:object="${weather}">
    Stadt: <input type="text" placeholder="Stadt eingeben" th:field="*{stadt}">
+
+    <span th:if="${#fields.hasErrors('stadt')}" th:errors="*{stadt}" class="error"></span>
+
     <input type="submit" value="Submit"/>
 </form>
 </body>

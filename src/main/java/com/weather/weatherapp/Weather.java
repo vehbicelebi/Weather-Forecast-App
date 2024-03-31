@@ -1,10 +1,13 @@
 package com.weather.weatherapp;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class Weather {
     private String grad;
 
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
     private String stadt;
     private String description;
 
